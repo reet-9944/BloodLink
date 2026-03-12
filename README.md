@@ -139,7 +139,7 @@ This project helped strengthen understanding of:
 
 ---
 
-## Author
+##  Developer
 
 **Reetu Rani**
 
