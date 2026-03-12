@@ -2,15 +2,23 @@ package com.bloodlink.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.io.FileInputStream;
+import java.util.Properties;
 
 public class DBConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/bloodlink_db";
-    private static final String USER = "root";
-    private static final String PASS = "@Reet9944";
 
     public static Connection getConnection() throws Exception {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        return DriverManager.getConnection(URL, USER, PASS);
-    }
 
+        Properties prop = new Properties();
+        FileInputStream fis = new FileInputStream("config.properties");
+        prop.load(fis);
+
+        String url = prop.getProperty("db.url");
+        String user = prop.getProperty("db.user");
+        String pass = prop.getProperty("db.password");
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        return DriverManager.getConnection(url, user, pass);
+    }
 }
